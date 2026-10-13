@@ -35,7 +35,13 @@ const LETTERS: [string, string][] = [
 
 export function InterLogo({ className, title = "Inter" }: { className?: string; title?: string }) {
   return (
-    <svg viewBox="0 0 127 32" role="img" aria-label={title} fill="currentColor" className={cn("block h-auto", className)}>
+    <svg
+      viewBox="0 0 127 32"
+      fill="currentColor"
+      className={cn("block h-auto", className)}
+      // sem título, o logo é decorativo: quem dá o nome é o elemento em volta (o link do cabeçalho, por exemplo)
+      {...(title ? { role: "img", "aria-label": title } : { "aria-hidden": true })}
+    >
       {/* símbolo: 128 x 128 reduzido para a altura das letras */}
       <path transform="translate(-3.2 -3.85) scale(0.302)" d={SYMBOL} />
       <g transform="translate(-26.3 0)">
