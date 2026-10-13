@@ -26,8 +26,9 @@ export function GlobalAccount() {
 
   return (
     <section id="global" aria-labelledby="global-titulo" className="bg-surface-2/60 py-24 lg:py-36">
+      {/* min-w-0 nos filhos: sem isso a largura natural do campo de valor alarga a coluna além da tela */}
       <div className="container-page grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-        <div>
+        <div className="min-w-0">
           <div id="global-titulo">
             <SectionHeading
               eyebrow="Global Account"
@@ -55,7 +56,7 @@ export function GlobalAccount() {
           </Button>
         </div>
 
-        <div className="reveal rounded-block border border-border bg-surface p-5 shadow-float sm:p-8">
+        <div className="reveal min-w-0 rounded-block border border-border bg-surface p-5 shadow-float sm:p-8">
           <p className="type-label text-muted">Simule uma conversão</p>
 
           <div className="relative mt-5 space-y-2">
@@ -69,7 +70,8 @@ export function GlobalAccount() {
                   inputMode="decimal"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value.replace(/[^\d.,]/g, "").slice(0, 9))}
-                  className="min-w-0 flex-1 bg-transparent font-display text-4xl font-medium tracking-[-0.04em] tabular-nums focus-visible:outline-none"
+                  size={1}
+                  className="w-full min-w-0 flex-1 bg-transparent font-display text-3xl font-medium tracking-[-0.04em] tabular-nums focus-visible:outline-none sm:text-4xl"
                 />
                 <span className="rounded-full bg-surface px-3.5 py-1.5 text-sm font-bold">{from.code}</span>
               </div>
@@ -90,7 +92,7 @@ export function GlobalAccount() {
                 <output
                   htmlFor="global-amount"
                   aria-live="polite"
-                  className="min-w-0 flex-1 truncate font-display text-4xl font-medium tracking-[-0.04em] tabular-nums"
+                  className="min-w-0 flex-1 truncate font-display text-3xl font-medium tracking-[-0.04em] tabular-nums sm:text-4xl"
                 >
                   {toUsd ? usd(converted) : brl(converted)}
                 </output>

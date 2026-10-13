@@ -154,6 +154,13 @@
     scroll-padding-top: 5rem;
   }
 
+  /* Rede de proteção: se algo estourar a largura, é cortado. Sem isto, um único elemento
+     largo demais faz o navegador do celular reduzir o zoom da página inteira. */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     background: var(--bg);
     color: var(--text);

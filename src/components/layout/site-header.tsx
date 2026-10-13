@@ -98,12 +98,12 @@ export function SiteHeader() {
           </div>
         </NavigationMenu.Root>
 
-        <div className="ml-auto flex items-center gap-1.5">
+        <div className="ml-auto flex items-center gap-1 sm:gap-1.5">
           <ThemeToggle />
           <Button href="#" variant="ghost" size="sm" className="hidden h-10 sm:inline-flex">
             Entrar
           </Button>
-          <Button href="#abrir-conta" size="sm" className="h-10 px-5">
+          <Button href="#abrir-conta" size="sm" className="h-10 px-4 sm:px-5">
             Abra sua conta
           </Button>
           <MobileMenu />

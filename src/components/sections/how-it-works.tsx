@@ -23,6 +23,7 @@ export function HowItWorks() {
     if (!section || !steps) return;
 
     const desktop = matchMedia("(min-width: 64rem)");
+    const stage = section.querySelector<HTMLElement>(".hiw-stage");
     let frame = 0;
     let near = true;
     let lastP = "";
@@ -31,11 +32,20 @@ export function HowItWorks() {
     const update = () => {
       frame = 0;
       const box = steps.getBoundingClientRect();
-      // No celular o aparelho fica fixo no topo, então o foco desce para a parte livre da tela.
-      const line = window.innerHeight * (desktop.matches ? 0.5 : 0.74);
-      const progress = (line - box.top) / box.height;
+      const count = onboarding.length;
+      const stepHeight = box.height / count;
+      let raw: number;
+      if (desktop.matches) {
+        // Desktop: o passo ativo é o que está com o centro no meio da tela.
+        raw = ((window.innerHeight * 0.5 - box.top) / box.height) * count - 0.5;
+      } else {
+        // Celular: o aparelho fica fixo no topo, então o foco é logo abaixo de onde ele termina.
+        // Conta pelo topo do passo (com uma pequena folga), para o título aparecer inteiro sob o aparelho.
+        const line = (stage?.getBoundingClientRect().bottom ?? window.innerHeight * 0.5) + stepHeight * 0.08;
+        raw = (line - box.top) / stepHeight;
+      }
       // Um quarto de passo de folga em cada ponta: é o trecho em que a primeira e a última tela se animam por dentro.
-      const p = Math.min(LAST + 0.25, Math.max(-0.25, progress * onboarding.length - 0.5));
+      const p = Math.min(LAST + 0.25, Math.max(-0.25, raw));
       // 0 quando a lista aponta na base da tela, 1 quando chega perto do meio: endireita o aparelho.
       const enter = Math.min(1, Math.max(0, (window.innerHeight - box.top) / (window.innerHeight * 0.55)));
       // Só escreve quando o valor muda de fato: cada escrita faz o navegador recalcular os estilos da seção.
@@ -94,7 +104,7 @@ export function HowItWorks() {
           {/* Aparelho fixo: no celular gruda no topo; no desktop fica centralizado na coluna da direita */}
           <div
             aria-hidden
-            className="hiw-stage sticky top-[4.25rem] z-10 -mx-5 flex h-[46svh] items-center justify-center bg-bg px-5 pb-3 pt-2 motion-reduce:hidden lg:top-24 lg:order-2 lg:mx-0 lg:h-[calc(100svh-8.5rem)] lg:bg-transparent lg:p-0"
+            className="hiw-stage sticky top-[4.25rem] z-10 -mx-5 flex h-[46svh] items-center [@media(max-height:700px)_and_(max-width:63.99rem)]:h-[38svh] justify-center bg-bg px-5 pb-3 pt-2 motion-reduce:hidden lg:top-24 lg:order-2 lg:mx-0 lg:h-[calc(100svh-8.5rem)] lg:bg-transparent lg:p-0"
           >
             <div className="hiw-device relative aspect-[9/18.7] h-full max-h-[39rem]">
               <Phone>
