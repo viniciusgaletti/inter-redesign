@@ -365,7 +365,8 @@
 
 /* ── Abertura ────────────────────────────────────────────────────────────────
    Só existe quando <html data-intro="play">, estado que o script do <head> liga
-   em todo carregamento da home. Quatro atos, cada um com sua animação e sua curva:
+   em todo carregamento da home. Segue o tema claro ou escuro que estiver ativo.
+   Quatro atos, cada um com sua animação e sua curva:
    entrada pelas laterais → união num cartão só → palavra → pouso no hero.
    O pouso é feito por JS (intro.tsx), que mede o destino na hora; sem JS, a
    abertura simplesmente se dissolve no fim. */
@@ -409,7 +410,10 @@
   .intro-stage {
     position: absolute;
     inset: 0;
-    background: #0c0a09;
+    /* cores do tema ativo (definido antes da primeira pintura) + o mesmo brilho do hero, atrás dos cartões */
+    background:
+      radial-gradient(ellipse 62% 58% at 50% 50%, var(--glow), transparent 72%),
+      var(--bg);
     animation: intro-fade-out 0.8s var(--intro-land) cubic-bezier(0.65, 0, 0.35, 1) forwards;
   }
 
@@ -426,7 +430,7 @@
     font-weight: 600;
     letter-spacing: -0.05em;
     line-height: 1;
-    color: #fbf8f4;
+    color: var(--text);
     white-space: nowrap;
   }
 
