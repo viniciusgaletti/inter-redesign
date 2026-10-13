@@ -32,7 +32,9 @@ export const viewport: Viewport = {
 // A abertura toca em todo carregamento da home. Só é pulada com âncora para outra seção (link direto)
 // e para quem pediu menos movimento. Quando toca, a página começa no topo: sem isso, um recarregamento
 // no meio da página restauraria a rolagem e o cartão pousaria num hero fora da tela.
-const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.dataset.theme=t}catch(e){}try{var h=location.hash;if(location.pathname==="/"&&(!h||h==="#topo")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){d.dataset.intro="play";history.scrollRestoration="manual";scrollTo(0,0)}else{history.scrollRestoration="auto"}}catch(e){}})()`;
+// O temporizador de 4,7 s é a rede de proteção: encerra a abertura e destrava a rolagem mesmo que o
+// React demore ou nunca inicie (rede ruim, erro de script). Normalmente quem encerra é o componente Intro.
+const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("theme");if(t!=="light"&&t!=="dark"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}d.dataset.theme=t}catch(e){}try{var h=location.hash;if(location.pathname==="/"&&(!h||h==="#topo")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){d.dataset.intro="play";history.scrollRestoration="manual";scrollTo(0,0);setTimeout(function(){if(d.dataset.intro==="play"){d.dataset.intro="done"}},4700)}else{history.scrollRestoration="auto"}}catch(e){}})()`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

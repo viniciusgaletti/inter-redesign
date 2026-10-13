@@ -22,6 +22,9 @@ export function Intro() {
     const overlay = root.current;
     if (html.dataset.intro !== "play" || !overlay) return;
 
+    // Avisa o CSS de que o pouso por JS vai acontecer; sem esta marca, vale a saída alternativa (dissolver).
+    html.dataset.introJs = "";
+
     const styles = getComputedStyle(overlay);
     const landAt = seconds(styles.getPropertyValue("--intro-land"));
     const total = seconds(styles.getPropertyValue("--intro-total"));

@@ -13,7 +13,12 @@ export function Hero() {
       {/* Atmosfera: brilho quente atrás do aparelho + malha de pontos que some para a esquerda */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 right-[-12%] size-[52rem] rounded-full bg-(--glow) blur-[120px]"
+        className="pointer-events-none absolute -top-40 right-[-12%] hidden size-[52rem] rounded-full bg-(--glow) blur-[120px] lg:block"
+      />
+      {/* no celular o mesmo brilho é um gradiente: um desfoque deste tamanho pesa demais na GPU */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 h-[42rem] [background:radial-gradient(ellipse_95%_55%_at_60%_22%,var(--glow),transparent_72%)] lg:hidden"
       />
       <div
         aria-hidden
@@ -73,7 +78,7 @@ export function Hero() {
           </Chip>
 
           <Chip
-            className="absolute -right-3 -bottom-3 lg:-right-10 lg:bottom-[-16%] lg:animate-float"
+            className="absolute -right-3 -bottom-3 max-lg:border-border max-lg:bg-surface max-lg:backdrop-blur-none lg:-right-10 lg:bottom-[-16%] lg:animate-float"
             style={delay(-2400)}
             icon={
               <span className="flex size-8 items-center justify-center rounded-full bg-brand text-on-brand">

@@ -25,6 +25,8 @@ export function HowItWorks() {
     const desktop = matchMedia("(min-width: 64rem)");
     let frame = 0;
     let near = true;
+    let lastP = "";
+    let lastEnter = "";
 
     const update = () => {
       frame = 0;
@@ -36,8 +38,11 @@ export function HowItWorks() {
       const p = Math.min(LAST + 0.25, Math.max(-0.25, progress * onboarding.length - 0.5));
       // 0 quando a lista aponta na base da tela, 1 quando chega perto do meio: endireita o aparelho.
       const enter = Math.min(1, Math.max(0, (window.innerHeight - box.top) / (window.innerHeight * 0.55)));
-      section.style.setProperty("--p", p.toFixed(3));
-      section.style.setProperty("--enter", enter.toFixed(3));
+      // Só escreve quando o valor muda de fato: cada escrita faz o navegador recalcular os estilos da seção.
+      const nextP = p.toFixed(3);
+      const nextEnter = enter.toFixed(3);
+      if (nextP !== lastP) section.style.setProperty("--p", (lastP = nextP));
+      if (nextEnter !== lastEnter) section.style.setProperty("--enter", (lastEnter = nextEnter));
       setActive(Math.min(LAST, Math.max(0, Math.round(p))));
     };
     const request = () => {
