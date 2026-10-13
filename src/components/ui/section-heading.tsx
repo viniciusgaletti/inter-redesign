@@ -22,7 +22,7 @@ export function SectionHeading({
   return (
     <div className={cn("reveal max-w-3xl", align === "center" && "mx-auto text-center", className)}>
       {eyebrow && <p className="type-label mb-4 text-brand-ink">{eyebrow}</p>}
-      <h2 className="type-h2">{title}</h2>
+      <h2 className="type-h2 ink">{title}</h2>
       {lead && <p className="type-lead mt-5 text-muted">{lead}</p>}
     </div>
   );

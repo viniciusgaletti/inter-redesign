@@ -1,5 +1,4 @@
 import {
-  ArrowRight,
   Armchair,
   BookOpen,
   Coins,
@@ -13,7 +12,7 @@ import {
   Sparkles,
   Utensils,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { VelocityMarquee } from "@/components/ui/velocity-marquee";
 import { Highlight, SectionHeading } from "@/components/ui/section-heading";
 
 const rows = [
@@ -41,30 +40,22 @@ export function Shop() {
   return (
     <section id="shop" aria-labelledby="shop-titulo" className="overflow-x-clip bg-surface-2/60 py-24 lg:py-36">
       <div className="container-page">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div id="shop-titulo">
-            <SectionHeading
-              eyebrow="Inter Shop + Loop"
-              title={
-                <>
-                  Comprar aqui <Highlight>devolve dinheiro.</Highlight>
-                </>
-              }
-              lead="Um shopping inteiro dentro do app, com cashback direto na conta e pontos em cada compra no cartão."
-            />
-          </div>
-          <Button href="#abrir-conta" variant="secondary" size="lg">
-            Acessar o Inter Shop
-            <ArrowRight aria-hidden className="size-[1.125rem]" />
-          </Button>
+        <div id="shop-titulo">
+          <SectionHeading
+            align="center"
+            eyebrow="Inter Shop + Loop"
+            title={
+              <>
+                Comprar aqui <Highlight>devolve dinheiro.</Highlight>
+              </>
+            }
+            lead="Um shopping inteiro dentro do app, com cashback direto na conta e pontos em cada compra no cartão."
+          />
         </div>
       </div>
 
       {/* Faixa rolante decorativa: a lista real de categorias fica no texto acessível abaixo */}
-      <div
-        aria-hidden
-        className="group mt-14 space-y-3 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]"
-      >
+      <VelocityMarquee className="group mt-14 space-y-3 [mask-image:linear-gradient(90deg,transparent,black_12%,black_88%,transparent)]">
         {rows.map((row, r) => (
           <div
             key={r}
@@ -84,7 +75,7 @@ export function Shop() {
             ))}
           </div>
         ))}
-      </div>
+      </VelocityMarquee>
       <p className="sr-only">Categorias: {rows.flat().map((c) => c.label).join(", ")}.</p>
 
       <div className="reveal container-page mt-14 grid gap-4 lg:grid-cols-2">
@@ -112,7 +103,7 @@ export function Shop() {
           </ul>
         </div>
       </div>
-      <p className="container-page mt-4 text-xs text-muted">Valores e pontos meramente ilustrativos.</p>
+      <p className="container-page mt-4 text-center text-xs text-muted">Valores e pontos meramente ilustrativos.</p>
     </section>
   );
 }

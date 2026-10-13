@@ -93,9 +93,9 @@ export function Products() {
           />
         </div>
 
-        <div className="reveal mt-14 grid gap-4 lg:grid-cols-12">
+        <div className="mt-14 grid gap-4 lg:grid-cols-12">
           <Tile
-            className="lg:col-span-7"
+            className="reveal lg:col-span-7"
             href="#abrir-conta"
             eyebrow="Conta Digital"
             title="Gratuita de verdade"
@@ -127,7 +127,7 @@ export function Products() {
           </Tile>
 
           <Tile
-            className="lg:col-span-5"
+            className="reveal [--stagger:1] lg:col-span-5"
             href="#"
             eyebrow="Cartão de Crédito"
             title="Sem anuidade, com pontos"
@@ -144,7 +144,7 @@ export function Products() {
           </Tile>
 
           <Tile
-            className="lg:col-span-4"
+            className="reveal lg:col-span-4"
             href="#investimentos"
             eyebrow="Investimentos"
             title="Do Porquinho à bolsa"
@@ -169,7 +169,7 @@ export function Products() {
           </Tile>
 
           <Tile
-            className="lg:col-span-4"
+            className="reveal [--stagger:1] lg:col-span-4"
             href="#global"
             eyebrow="Global Account"
             title="Conta em dólar"
@@ -192,7 +192,7 @@ export function Products() {
           </Tile>
 
           <Tile
-            className="lg:col-span-4"
+            className="reveal [--stagger:2] lg:col-span-4"
             href="#shop"
             eyebrow="Inter Shop"
             title="Compre e receba de volta"
@@ -213,7 +213,7 @@ export function Products() {
 
           <a
             href="#"
-            className="group flex flex-col gap-6 rounded-card border border-border bg-surface p-7 transition-colors duration-300 hover:border-text/25 lg:col-span-12 lg:flex-row lg:items-center lg:justify-between lg:p-8"
+            className="reveal group flex flex-col gap-6 rounded-card border border-border bg-surface p-7 transition-colors duration-300 hover:border-text/25 lg:col-span-12 lg:flex-row lg:items-center lg:justify-between lg:p-8"
           >
             <div>
               <p className="type-label text-brand-ink">Seguros</p>

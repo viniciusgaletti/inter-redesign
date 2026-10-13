@@ -130,7 +130,7 @@ export function Investments() {
           </div>
         </div>
 
-        <figure className="flex flex-col rounded-card border border-border bg-surface p-5 sm:p-7">
+        <figure className="chart-scope flex flex-col rounded-card border border-border bg-surface p-5 sm:p-7">
           <figcaption className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
             <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               {data.map((s) => (
@@ -186,14 +186,14 @@ export function Investments() {
               </text>
             ))}
 
-            <path d={`${line(data[0].values)}L${x(months)} ${H - PAD.bottom}L${x(0)} ${H - PAD.bottom}Z`} fill="url(#invest-fill)" />
+            <path className="chart-fill" d={`${line(data[0].values)}L${x(months)} ${H - PAD.bottom}L${x(0)} ${H - PAD.bottom}Z`} fill="url(#invest-fill)" />
             {[...data].reverse().map((s) => (
-              <path key={s.key} d={line(s.values)} fill="none" stroke={s.color} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
+              <path key={s.key} className="chart-line" pathLength={1} d={line(s.values)} fill="none" stroke={s.color} strokeWidth="2" strokeLinejoin="round" strokeLinecap="round" />
             ))}
 
             <line x1={x(at)} x2={x(at)} y1={PAD.top} y2={H - PAD.bottom} stroke="var(--text-muted)" strokeOpacity={hover === null ? 0 : 0.5} />
             {data.map((s) => (
-              <circle key={s.key} cx={x(at)} cy={y(s.values[at])} r="5" fill={s.color} stroke="var(--surface)" strokeWidth="2" />
+              <circle key={s.key} className="chart-fill" cx={x(at)} cy={y(s.values[at])} r="5" fill={s.color} stroke="var(--surface)" strokeWidth="2" />
             ))}
           </svg>
 
